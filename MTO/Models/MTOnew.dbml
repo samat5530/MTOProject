@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MTO" Class="MTOnewDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SAMAT-PC\SQLEXPRESS;Initial Catalog=MTO;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="MTOConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.InputTrueAnswers" Member="InputTrueAnswers">
+    <Type Name="InputTrueAnswers">
+      <Column Name="QuetionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InputTrueAnswer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Questions_InputTrueAnswers" Member="Questions" ThisKey="QuetionID" OtherKey="QuestionID" Type="Questions" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CheckboxAnswers" Member="CheckboxAnswers">
+    <Type Name="CheckboxAnswers">
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Checkbox1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Checkbox2" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Checkbox3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Checkbox4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Checkbox5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Questions_CheckboxAnswers" Member="Questions" ThisKey="QuestionID" OtherKey="QuestionID" Type="Questions" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OptionAnswers" Member="OptionAnswers">
+    <Type Name="OptionAnswers">
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpA" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpB" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ExpD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OptionA" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OptionB" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OptionC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OptionD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Questions_OptionAnswers" Member="Questions" ThisKey="QuestionID" OtherKey="QuestionID" Type="Questions" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Questions" Member="Questions">
+    <Type Name="Questions">
+      <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QuestionTitle" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Questions_InputTrueAnswers" Member="InputTrueAnswers" ThisKey="QuestionID" OtherKey="QuetionID" Type="InputTrueAnswers" />
+      <Association Name="Questions_CheckboxAnswers" Member="CheckboxAnswers" ThisKey="QuestionID" OtherKey="QuestionID" Type="CheckboxAnswers" />
+      <Association Name="Questions_OptionAnswers" Member="OptionAnswers" ThisKey="QuestionID" OtherKey="QuestionID" Type="OptionAnswers" />
+      <Association Name="Questions_RadioAnswers" Member="RadioAnswers" ThisKey="QuestionID" OtherKey="QestionID" Type="RadioAnswers" />
+      <Association Name="QuestionTypes_Questions" Member="QuestionTypes" ThisKey="QuestionTypeID" OtherKey="QuestionTypeID" Type="QuestionTypes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuestionTypes" Member="QuestionTypes">
+    <Type Name="QuestionTypes">
+      <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeTitle" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="QuestionTypes_Questions" Member="Questions" ThisKey="QuestionTypeID" OtherKey="QuestionTypeID" Type="Questions" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RadioAnswers" Member="RadioAnswers">
+    <Type Name="RadioAnswers">
+      <Column Name="QestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Radio1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Radio2" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Radio3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Radio4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Questions_RadioAnswers" Member="Questions" ThisKey="QestionID" OtherKey="QuestionID" Type="Questions" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentScores" Member="StudentScores">
+    <Type Name="StudentScores">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LastTestDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Score" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Users_StudentScores" Member="Users" ThisKey="UserID" OtherKey="UserID" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeacherLections" Member="TeacherLections">
+    <Type Name="TeacherLections">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TheoryName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Part1Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Part1" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Part2Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Part2" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Part3Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Part3" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Video" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Animation" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Audio" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Hidden" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Users_TeacherLections" Member="Users" ThisKey="UserID" OtherKey="UserID" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="Users">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Users_StudentScores" Member="StudentScores" ThisKey="UserID" OtherKey="UserID" Type="StudentScores" />
+      <Association Name="Users_TeacherLections" Member="TeacherLections" ThisKey="UserID" OtherKey="UserID" Type="TeacherLections" />
+      <Association Name="UserTypes_Users" Member="UserTypes" ThisKey="TypeID" OtherKey="TypeID" Type="UserTypes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTypes" Member="UserTypes">
+    <Type Name="UserTypes">
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="UserTypes_Users" Member="Users" ThisKey="TypeID" OtherKey="TypeID" Type="Users" />
+    </Type>
+  </Table>
+</Database>

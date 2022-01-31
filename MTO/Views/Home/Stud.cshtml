@@ -1,0 +1,519 @@
+﻿<h1>Здравствуйте, Студент!</h1>
+
+<h3>Здесь размещен предназначенный для прочтения лекционный материал. Тема: Численные методы</h3>
+
+<h5>Пожалуйста, прочтите материал внимательно, в конце лекции есть ссылка на тестирование</h5>
+
+<p>Задачи решения уравнений постоянно возникают на практике, например, в экономике, развивая бизнес, вы хотите узнать, когда прибыль достигнет определенного значения, в медицине при исследовании действия лекарственных препаратов, важно знать, когда концентрация вещества достигнет заданного уровня и т.д.</p>
+
+<p>В задачах оптимизации часто необходимо определять точки, в которых производная функции обращается в 0, что является необходимым условием <em>локального</em> экстремума.</p>
+
+<p>В статистике при построении оценок методом наименьших квадратов или методом максимального правдоподобия также приходится решать нелинейные уравнения и системы уравнений.</p>
+
+<p>Итак, возникает целый класс задач, связанных с нахождением решений <em>нелинейных</em> уравнений, например, уравнения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image002.png" /> или уравнения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image004.png" /> и т.д. </p>
+
+<p>В простейшем случае у нас имеется функция <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image006.png" />, заданная на отрезке (<em><span lang="EN-US">a</span></em><em>, </em><span lang="EN-US">b</span>) и принимающая определенные значения.</p>
+
+<p>Каждому значению <em><span lang="EN-US">x</span></em><em><span lang="EN-US"> </span></em>из этого отрезка мы можем сопоставить число <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image008.png" />, это и есть <em>функциональная</em> зависимость, ключевое понятие математики.</p>
+
+<p>Нам нужно найти такое значение <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image010.png" /> при котором <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image012.png" />такие <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image014.png" /> называются корнями функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image016.png" /></p>
+
+<p><em>Визуально нам нужно определить точку пересечения графика функции </em><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image008_0000.png" /><em> с осью абсцисс.</em></p>
+
+<h2><a name="s1"></a>Метод деления пополам</h2>
+
+<p>Простейшим методом нахождения корней уравнения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image002_0000.png" /> является метод деления пополам или <em>дихотомия</em>. </p>
+
+<p>Этот метод является интуитивно ясным и каждый действовал бы при решении задачи подобным образом.</p>
+
+<p>Алгоритм состоит в следующем.</p>
+
+<p>Предположим, мы нашли две точки <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image004_0000.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image006_0000.png" />, такие что <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image008_0001.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image010_0000.png" /> имеют <em>разные</em> знаки, тогда между этими точками находится хотя бы один корень функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image012_0000.png" />. </p>
+
+<p>Поделим отрезок <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image014_0000.png" /> пополам и введем <em>среднюю</em> точку <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image016_0000.png" />. </p>
+
+<p>Тогда либо <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image018.png" />, либо <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image020.png" />. </p>
+
+<p>Оставим ту половину отрезка, для которой значения на концах имеют разные знаки. Теперь этот отрезок снова делим пополам и оставляем ту его часть, на границах которой функция имеет разные знаки, и так далее, достижения требуемой точности. </p>
+
+<p>Очевидно, постепенно мы сузим область, где находится корень функции, а, следовательно, с определенной степенью точности определим его.</p>
+
+<p>Заметьте, описанный алгоритм применим для любой непрерывной функции.</p>
+
+<p>К достоинствам метода деления пополам следует отнести его высокую надежность и простоту. </p>
+
+<p>Недостатком метода является тот факт, что прежде чем начать его применение, необходимо найти две точки, значения функции в которых имеют разные знаки. Очевидно, что метод неприменим для корней четной кратности и также не может быть обобщен на случай комплексных корней и на системы уравнений. </p>
+
+<p>Порядок сходимости метода линейный, на каждом шаге точность возрастает вдвое, чем больше сделано итераций, тем точнее определен корень. </p>
+
+<h2>
+    <a name="s2"></a>
+    Метод Ньютона: теоретические основы
+</h2>
+
+<p><em>Классический метод Ньютона</em> или <em>касательных</em> заключается в том, что если <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image022.png" /> &mdash; некоторое приближение к корню <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image024.png" /> уравнения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image026.png" />, то следующее приближение определяется как корень касательной к функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image028.png" />, проведенной в точке <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image022_0000.png" />. </p>
+
+<p>Уравнение касательной к функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image030.png" />в точке <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image032.png" />имеет вид: </p>
+
+<p><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image034.png" /></p>
+
+<p>В уравнении касательной положим <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image036.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image038.png" />.</p>
+
+<p>Тогда алгоритм последовательных вычислений в методе Ньютона состоит в следующем:</p>
+
+<p><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image040.png" /></p>
+
+<p>Сходимость метода касательных квадратичная, порядок сходимости равен 2.</p>
+
+<p><em>Таким образом, сходимость метода касательных Ньютона очень быстрая.</em></p>
+
+<p>Запомните этот замечательный факт!</p>
+
+<p>Без всяких изменений метод обобщается на комплексный случай. </p>
+
+<p>Если корень <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image024_0000.png" /> является корнем второй кратности и выше, то порядок сходимости падает и становится линейным. </p>
+
+<p><em>Упражнение 1</em>. Найти с помощью метода касательных решение уравнения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image042.png" /> на отрезке (0, 2).</p>
+
+<p><em>Упражнение 2.</em> Найти с помощью метода касательных решение уравнения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image044.png" /> на отрезке (1, 3).</p>
+
+<p>К недостаткам метода Ньютона следует отнести его локальность, поскольку он гарантированно сходится при произвольном стартовом приближении только, если везде выполнено условие <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image046.png" />, в противной ситуации сходимость есть лишь в некоторой окрестности корня. </p>
+
+<p>Недостатком метода Ньютона является необходимость вычисления производных на каждом шаге. </p>
+
+<h2>
+    <a name="s3a"></a>
+    Визуализация метода Ньютона
+</h2>
+
+<p>Метод Ньютона (метод касательных) применяется в том случае, если уравнение <i>f</i><i>(</i><i>x</i><i>) = 0</i> имеет корень <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/11.png" />, и выполняются условия: </p>
+
+<p> 1) функция <i>y</i><i>= </i><i>f</i><i>(</i><i>x</i><i>)</i> определена и непрерывна при <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/12.png" />;</p>
+
+<p> 2) <i>f</i><i>(</i><i>a</i><i>)·</i><i>f</i><i>(</i><i>b</i><i>) &lt; 0</i> (функция принимает значения разных знаков на концах отрезка [<i>a</i><i>;</i><i>b</i>]);</p>
+
+<p> 3) производные <i>f'</i><i>(</i><i>x</i><i>)</i> и <i>f''</i><i>(</i><i>x</i><i>)</i> сохраняют знак на отрезке [<i>a</i><i>;</i><i>b</i>] (т.е. функция <i>f</i><i>(</i><i>x</i><i>)</i> либо возрастает, либо убывает на отрезке [<i>a</i><i>;</i><i>b</i>], сохраняя при этом направление выпуклости);</p>
+
+<p> 4) <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/13.png" />.</p>
+
+<p> Основная идея метода заключается в следующем: на отрезке [<i>a</i><i>;</i><i>b</i>] выбирается такое число <i>x</i><i><sub>0</sub></i><i>,</i> при котором <i>f</i><i>(</i><i>x</i><i><sub>0</sub></i><i>)</i> имеет тот же знак, что и <i>f</i><i>''</i><i>(</i><i>x</i><i><sub>0</sub></i><i>),</i> т. е. выполняется условие <i>f</i><i>(</i><i>x</i><i><sub>0</sub></i><i>)·</i><i>f</i><i>''</i><i>(</i><i>x</i><i>) &gt; 0</i>. Таким образом, выбирается точка с абсциссой <i>x</i><i><sub>0</sub></i>, в которой касательная к кривой <i>y</i><i>=</i><i>f</i><i>(</i><i>x</i><i>)</i> на отрезке [<i>a</i><i>;</i><i>b</i>] пересекает ось <i>Ox</i>. За точку <i>x</i><i><sub>0</sub></i> сначала удобно выбирать один из концов отрезка.</p>
+
+<p> Рассмотрим метод Ньютона на конкретном примере. </p>
+
+<p> Пусть нам дана возрастающая функция <i>y = f(x) =x<sup>2</sup>-2,</i> непрерывная на отрезке (0;2), и имеющая <i>f '</i><i>(x) =</i> <i>2</i><i>x</i> <i>&gt;</i> <i>0</i> и <i>f</i><i> ''</i><i>(x) = 2</i> <i>&gt; 0</i>. </p>
+
+<p align="center"> <img class="formula" width="623" height="421" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image004_0000.jpg" /></p>
+
+<p align="center"> <i>Рисунок </i><i>1</i><i>. f(x) =x<sup>2</sup>-2</i></p>
+
+<p>Уравнение касательной в общем виде имеет представление: </p>
+
+<p> <i>y-y<sub>0</sub>= f </i><i>'</i><i>(x<sub>0</sub>)·(x-x<sub>0</sub>).</i></p>
+
+<p> В нашем случае: <i>y-y<sub>0</sub>=2x<sub>0</sub>·(x-x<sub>0</sub>). </i>В качестве точки x<sub>0</sub> выбираем точку <i>B<sub>1</sub>(b; f(b)) = (2,2).</i> Проводим касательную к функции <i>y = f(x)</i> в точке B<sub>1</sub>, и обозначаем точку пересечения касательной и оси <i>Ox</i> точкой <i>x<sub>1</sub></i>. Получаем уравнение первой касательной:<i>y-2=2·2(x-2), y=4x-6.</i> </p>
+
+<p> Точка пересечения касательной и оси <i>Ox: x<sub>1</sub> = </i><img class="formula" width="60" height="31" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image008.png" /> </p>
+
+<p align="center"> <img class="formula" width="623" height="411" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image010_0000.jpg" /></p>
+
+<p align="center"> <i>Рисунок </i><i>2.</i><i> Результат первой итерации</i></p>
+
+<p> Затем находим точку пересечения функции <i>y=f(x)</i> и перпендикуляра, проведенного к оси <i>Ox</i> через точку <i>x<sub>1</sub></i>, получаем точку <i>В<sub>2</sub> =(1.5; 0.25)</i>. Снова проводим касательную к функции <i>y = f(x)</i> в точке В<sub>2</sub>, и обозначаем точку пересечения касательной и оси <i>Ox</i> точкой <i>x<sub>2</sub></i>. </p>
+
+<p> Уравнение второй касательной: <i>y</i><i>-0.25=2*1.5(</i><i>x</i><i>-1.5), </i><i>y</i><i> = 3</i><i>x</i><i> &ndash; 4.25.</i></p>
+
+<p> Точка пересечения касательной и оси <em>Ox: x<sub>2</sub> = </em><img class="formula" width="26" height="32" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image012.png" /><em>.</em></p>
+
+<p align="center"><img class="formula" width="623" height="476" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image014_0000.jpg" /></p>
+
+<p align="center"> <em>Рисунок </em><em>3.</em><em> Вторая итерация метода Ньютона</em></p>
+
+<p>Затем находим точку пересечения функции <em>y=f(x)</em> и перпендикуляра, проведенного к оси <em>Ox</em> через точку x<sub>2</sub>, получаем точку В<sub>3</sub> и так далее. </p>
+
+<p> В3 = (<img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image016.png" />)</p>
+
+<p align="center"> <img class="formula" width="623" height="472" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image018_0000.jpg" /></p>
+
+<p align="center"> <em>Рисунок </em><em>4.</em><em> Третий шаг метода касательных</em> </p>
+
+<p> Первое приближение корня определяется по формуле:</p>
+
+<p align="center"> <img class="formula" width="111" height="47" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image020.png" /> = 1.5.</p>
+
+<p> Второе приближение корня определяется по формуле: </p>
+
+<p align="center"> <img class="formula" width="109" height="47" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image022.png" /> =<img class="formula" width="99" height="32" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image024.png" /> </p>
+
+<p> Третье приближение корня определяется по формуле: </p>
+
+<p align="center"> <img class="formula" width="112" height="47" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image026.png" /> <img class="formula" width="99" height="22" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image028.png" /> </p>
+
+<p> Таким образом<em>, </em><em>i</em>-ое приближение корня определяется по формуле:</p>
+
+<p align="center"> <img class="formula" width="124" height="47" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image030.png" /></p>
+
+<p> Вычисления ведутся до тех пор, пока не будет достигнуто совпадение десятичных знаков, которые необходимы в ответе, или заданной точности e - до выполнения неравенства <em>|</em><em>xi</em><em>-</em><em>xi</em><em>-1</em><em>| &lt; </em><em>e</em><em>.</em></p>
+
+<p> В нашем случае, сравним приближение, полученное на третьем шаге с реальным ответом, посчитанном на калькуляторе:</p>
+
+<p align="center"> <img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/calc.png" width="200" height="283" /> </p>
+
+<p align="center"><i>Рисунок 5. Корень из 2, посчитанный на калькуляторе</i></p>
+
+<p></p>
+
+<p align="center"> <img class="formula" width="127" height="25" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image032.png" /> </p>
+
+<p align="center"> <img class="formula" width="17" height="24" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image034.png" /> <img class="formula" width="95" height="22" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/clip_image036.png" />.</p>
+
+<p> Как видно, уже на третьем шаге мы получили погрешность меньше 0.000002.</p>
+
+<p> Таким образом можно вычислить значение величины &quot;корень квадратный из 2&quot; с любой степенью точности. Этот замечательный метод был изобретен Ньютоном и позволяет находить корни очень сложных уравнений.</p>
+
+<h1>
+    <a name="s3b"></a>
+    Метод Ньютона: приложение на  С++
+</h1>
+
+<p>В данной статье мы автоматизируем процесс вычисления корней уравнений, написав консольное приложение на языке C++. Разрабатывать его мы будем в Visual C++ 2010 Express, это бесплатная и очень удобная среда разработки С++. </p>
+
+<p>Для начала запустим  Visual C++ 2010 Express. Появится стартовое окно программы. В левом углу нажмем &laquo;Создать проект&raquo;.</p>
+
+<p align="center"><img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image002.jpg" height="355" width="623" /></p>
+
+<p align="center"><i>Рис. 1. Начальная страница Visual C++ 2010 Express</i></p>
+
+<p>В появившемся меню выберем &laquo;Консольное приложение Win32&raquo;, введем имя приложение &laquo;Метод_Ньютона&raquo;.</p>
+
+<p align="center"><img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image004.jpg" height="425" width="623" /></p>
+
+<p align="center"><i>Рис. 2. Создание проекта</i></p>
+
+<p>В появившемся окно жмем &laquo;Готово&raquo;. Далее появится окно, содержащее текстовый редактор кода для файла Метод_Ньютона.cpp. </p>
+
+<p align="center"><img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image006.jpg" height="444" width="624" /></p>
+
+<p align="center"><i>Рис. 3. Редактор кода</i></p>
+
+<p>Далее приведен подробный листинг Метода Ньютона:</p>
+
+<table align="center" cellspacing="0" cellpadding="5" border="0" class="tab1">
+    <tbody>
+        <tr>
+            <td align="left">
+                <p>// Метод_Ньютона.cpp: определяет точку входа для консольного приложения </p>
+
+                <p>#include &quot;stdafx.h&quot;</p>
+
+                <p>#include &lt;iostream&gt;</p>
+
+                <p>using namespace std; </p>
+
+                <p>float f(double x) //возвращает значение функции f(x) = x^2-2 </p>
+
+                <p>{</p>
+
+                <p>       return x*x-2;</p>
+
+                <p>} </p>
+
+                <p>float df(float x) //возвращает значение производной</p>
+
+                <p>{</p>
+
+                <p>       return 2*x;</p>
+
+                <p>} </p>
+
+                <p>float d2f(float x) // значение второй производной</p>
+
+                <p>{</p>
+
+                <p>       return 2;</p>
+
+                <p>} </p>
+
+                <p>int _tmain(int argc, _TCHAR* argv[])</p>
+
+                <p>{</p>
+
+                <p>       int exit = 0, i=0;//переменные для выхода и цикла</p>
+
+                <p>       double x0,xn;// вычисляемые приближения для корня</p>
+
+                <p>       double a, b, eps;// границы отрезка и необходимая точность </p>
+
+                <p>             do { </p>
+
+                <p>                    i=0;</p>
+
+                <p>                    cout&lt;&lt;&quot;Please input [a;b]\n=&gt;&quot;;</p>
+
+                <p>                    cin&gt;&gt;a&gt;&gt;b; // вводим границы отрезка, на котором будем искать корень </p>
+
+                <p>                    cout&lt;&lt;&quot;\nPlease input epsilon\n=&gt;&quot;;</p>
+
+                <p>                    cin&gt;&gt;eps; // вводим нужную точность вычислений </p>
+
+                <p>                    if (a &gt; b) // если пользователь перепутал границы отрезка, меняем их местами </p>
+
+                <p>                           {</p>
+
+                <p>                                  x0 = a;</p>
+
+                <p>                                  a = b;</p>
+
+                <p>                                  b = x0;</p>
+
+                <p>                           } </p>
+
+                <p>                    if (f(a)*f(b)&gt;0) // если знаки функции на краях отрезка одинаковые, то здесь нет корня</p>
+
+                <p>                                  cout&lt;&lt;&quot;\nError! No roots in this interval\n&quot;;</p>
+
+                <p>                           else </p>
+
+                <p>                           { </p>
+
+                <p>                           if (f(a)*d2f(a)&gt;0) x0  = a; // для выбора начальной точки проверяем f(x0)*d2f(x0)&gt;0 ?</p>
+
+                <p>                                  else x0 = b; </p>
+
+                <p>                           xn = x0-f(x0)/df(x0); // считаем первое приближение</p>
+
+                <p>                           cout&lt;&lt;++i&lt;&lt;&quot;-th iteration = &quot;&lt;&lt;xn&lt;&lt;&quot;\n&quot;; </p>
+
+                <p>                           while(fabs(x0-xn) &gt; eps) // пока не достигнем необходимой точности, будет продолжать вычислять</p>
+
+                <p>                           {</p>
+
+                <p>                                  x0 = xn;</p>
+
+                <p>                                  xn = x0-f(x0)/df(x0); // непосредственно формула Ньютона</p>
+
+                <p>                                  cout&lt;&lt;++i&lt;&lt;&quot;-th iteration = &quot;&lt;&lt;xn&lt;&lt;&quot;\n&quot;;</p>
+
+                <p>                           } </p>
+
+                <p>                    cout&lt;&lt;&quot;\nRoot = &quot;&lt;&lt;xn; // вывод вычисленного корня</p>
+
+                <p>                    }</p>
+
+                <p>                    cout&lt;&lt;&quot;\nExit?=&gt;&quot;;</p>
+
+                <p>                    cin&gt;&gt;exit;</p>
+
+                <p>             } while (exit!=1); // пока пользователь не ввел exit = 1 </p>
+
+                <p>       return 0;</p>
+
+                <p>}</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p></p>
+
+<p>Посмотрим, как это работает. Нажмем на зеленый треугольник в верхнем левом углу экрана, или же клавишу F5.</p>
+
+<p>Если происходит ошибка компиляции &laquo;Ошибка error LNK1123: сбой при преобразовании в COFF: файл недопустим или поврежден&raquo;, то это лечится либо установкой первого Service pack 1, либо в настройках проекта Свойства -&gt; Компоновщик  отключаем инкрементную компоновку.</p>
+
+<p align="center"><img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image008.jpg" height="442" width="623" /></p>
+
+<p align="center"><i>Рис. 4. Решение ошибки компиляции проекта</i></p>
+
+<p>Мы будем искать корни у функции  <em>f(</em><em>x) = </em><em>x2-2</em>.</p>
+
+<p>Сначала проверим работу приложения на &laquo;неправильных&raquo; входных данных. На отрезке [3; 5] нет корней, наша программа должна выдать сообщение об ошибке.</p>
+
+<p>У нас появилось окно приложения:</p>
+
+<p align="center"><img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image010.jpg" height="316" width="623" /></p>
+
+<p align="center"><i>Рис. 5. Ввод входных данных</i></p>
+
+<p>Введем границы отрезка 3 и 5, и точность 0.05. Программа, как и надо, выдала сообщение об ошибке, что на данном отрезке корней нет.</p>
+
+<p align="center"><img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image012.jpg" height="309" width="623" /></p>
+
+<p align="center"><i>Рис. 6. Ошибка &laquo;На этом отрезке корней нет!&raquo;</i></p>
+
+<p>Выходить мы пока не собираемся, так что на сообщение &laquo;Exit?&raquo; вводим &laquo;0&raquo;.</p>
+
+<p>Теперь проверим работу приложения на корректных входных данных. Введем отрезок [0; 2] и точность 0.0001.</p>
+
+<p align="center"><img src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image014.jpg" height="310" width="623" /></p>
+
+<p align="center"><i>Рис. 7. Вычисление корня с необходимой точностью</i></p>
+
+<p>Как мы видим, необходимая точность была достигнута уже на 4-ой итерации.</p>
+
+<p>Чтобы выйти из приложения, введем &laquo;Exit?&raquo; =&gt; 1.</p>
+
+<h2>
+    <a name="s3"></a>
+    Метод секущих
+</h2>
+
+<p>Чтобы избежать вычисления производной, метод Ньютона можно упростить, заменив производную на приближенное значение, вычисленное по двум предыдущим точкам:</p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image001.png" />/<img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image002_0001.png" /></p>
+
+<p>Итерационный процесс имеет вид: </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image003.png" /></p>
+
+<p>где <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image004_0001.png" /> . </p>
+
+<p>Это двухшаговый итерационный процесс, поскольку использует для нахождения последующего приближения два предыдущих. </p>
+
+<p>Порядок сходимости метода секущих ниже, чем у метода касательных и равен в случае однократного корня <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image005.png" />. </p>
+
+<p align="left"><em>Эта замечательная величина называется золотым сечением:</em></p>
+
+<p><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image006_0001.png" /></p>
+
+<p>Убедимся в этом, считая для удобства, что <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image007.png" />. </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image008_0002.png" /></p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image009.png" /></p>
+
+<p>Таким образом, с точностью до бесконечно малых более высокого порядка </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image010_0001.png" /></p>
+
+<p>Отбрасывая остаточный член, получаем рекуррентное соотношение, решение которого естественно искать в виде <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image011.png" />. </p>
+
+<p>После подстановки имеем: <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image012_0001.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image013.png" /></p>
+
+<p>Для сходимости необходимо, чтобы <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image014_0001.png" /> было положительным, поэтому <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image015.png" />. </p>
+
+<p>Поскольку знание производной не требуется, то при том же объёме вычислений в методе секущих (несмотря на меньший порядок сходимости) можно добиться большей точности, чем в методе касательных. </p>
+
+<p>Отметим, что вблизи корня приходится делить на малое число, и это приводит к потере точности (особенно в случае кратных корней), поэтому, выбрав относительно малое <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image016_0001.png" />, выполняют вычисления до выполнения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image017.png" /> и продолжают их пока модуль разности соседних приближений убывает. </p>
+
+<p>Как только начнется рост, вычисления прекращают и последнюю итерацию не используют. </p>
+
+<p>Такая процедура определения момента окончания итераций называется приемом <em>Гарвика.</em></p>
+
+<h2>
+    <a name="s4"></a>
+    <strong>Метод парабол </strong>
+</h2>
+
+<p>Рассмотрим трехшаговый метод, в котором приближение <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image018_0000.png" /> определяется по трем предыдущим точкам <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image019.png" /> , <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image020_0000.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image021.png" />. </p>
+
+<p>Для этого заменим, аналогично методу секущих, функцию <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image022_0001.png" /> интерполяционной параболой проходящей через точки <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image019_0000.png" />, <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image020_0001.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image021_0000.png" />. </p>
+
+<p>В форме Ньютона она имеет вид: </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image023.png" /></p>
+
+<p>Точка <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image018_0001.png" />определяется как тот из корней этого полинома, который ближе по модулю к точке <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image019_0001.png" />. </p>
+
+<p>Порядок сходимости метода парабол выше, чем у метода секущих, но ниже, чем у метода Ньютона. </p>
+
+<p align="left">
+    Важным отличием от ранее рассмотренных методов, является то обстоятельство, что даже если <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image022_0002.png" /> вещественна при вещественных <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image024_0001.png" /> и стартовые приближения выбраны вещественными, метод парабол может привести к комплексному корню исходной задачи. <em>
+        <br />
+    </em>
+</p>
+
+<p align="left"><em>Этот метод очень удобен для поиска корней многочленов высокой степени.</em></p>
+
+<h2>
+    <a name="s5"></a>
+    <strong>Метод простых итераций </strong>
+</h2>
+
+<p>Задачу нахождения решений уравнений можно формулировать как задачу нахождения корней: <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image025.png" />, или как задачу нахождения неподвижной точки<img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image026_0000.png" />. </p>
+
+<p>Пусть <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image027.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image028_0000.png" /> &mdash; сжатие: <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image029.png" /> (в частности, тот факт, что <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image028_0001.png" /> &mdash; сжатие, как легко видеть, означает, что<img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image030_0000.png" />). </p>
+
+<p>По теореме Банаха существует и единственна неподвижная точка <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image031.png" /> </p>
+
+<p>Она может быть найдена как предел простой итерационной процедуры </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image032_0000.png" /></p>
+
+<p>где начальное приближение <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image033.png" /> &mdash; произвольная точка промежутка <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image034_0000.png" />. </p>
+
+<p>Если функция <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image028_0002.png" /> дифференцируема, то удобным критерием сжатия является число <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image035.png" />. Действительно, по теореме Лагранжа</p>
+
+<p><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image036_0000.png" /></p>
+
+<p>Таким образом, если производная меньше единицы, то <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image028_0003.png" /> является сжатием. </p>
+
+<p>Условие <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image037.png" /> существенно, ибо если, например, <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image038_0000.png" /> на [0,1] , то неподвижная точка отсутствует, хотя производная равна нулю. Скорость сходимости зависит от величины <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image035_0000.png" />. Чем меньше <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image035_0001.png" />, тем быстрее сходимость. </p>
+
+<p>Рассмотрим уравнение: <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image039.png" />. </p>
+
+<p>Если в качестве <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image028_0004.png" /> взять функцию <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image040_0000.png" />, то соответствующая итерационная процедура будет иметь вид: <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image041.png" />. Как нетрудно убедиться, метод итераций в данном случае расходится при любой начальной точке <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image033_0000.png" />, не совпадающей с собственно неподвижной точкой <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image042_0000.png" />. </p>
+
+<p>Однако можно в качестве <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image028_0005.png" /> можно взять, например, функцию <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image043.png" />. Соответствующая итерационная процедура имеет вид: <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image044_0000.png" />. </p>
+
+<p>Эти итерации сходятся к неподвижной точке для любого начального приближения <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image045.png" />:</p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image046_0000.png" /></p>
+
+<p>Действительно, в первом случае <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image047.png" />, т.е. для выполнения условия <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image048.png" /> необходимо чтобы <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image049.png" />, но тогда <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image050.png" />. Таким образом, отображение <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image040_0001.png" /> сжатием не является. </p>
+
+<p>Рассмотрим <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image043_0000.png" />, неподвижная точка та же самая, ситуация другая. Здесь, хотя формально производная может быть довольно большой (при малых ж), однако уже на следующем шаге она будет меньше 1. </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image051.png" /></p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image052.png" /></p>
+
+<p>т.е. такой итерационный процесс всегда сходится. </p>
+
+<p>Метод Ньютона представляет собой частный случай метода простых итераций.</p>
+
+<p>Здесь <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image053.png" /> нетрудно убедиться, что при <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image054.png" /> существует окрестность корня, в которой <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image055.png" /> . </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image056.png" /></p>
+
+<p>то если <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image057.png" /> корень кратности <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image058.png" />, то в его окрестности <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image059.png" /> и, следовательно,<img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image060.png" />. </p>
+
+<p>Если <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image061.png" /> &mdash; простой корень, то сходимость метода касательных квадратичная (то есть порядок сходимости равен 2). </p>
+
+<p>Поскольку <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image062.png" />, то </p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image063.png" /></p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image064.png" /></p>
+
+<p>откуда</p>
+
+<p align="center"><img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image065.png" /></p>
+
+<p>Таким образом, сходимость метода Ньютона очень быстрая. </p>
+
+<h2>
+    <a name="s6"></a>
+    <strong>Нахождение всех корней уравнения</strong>
+</h2>
+
+<p>Недостатком почти всех итерационных методов нахождения корней является то, что они при <em>однократном</em> применении позволяют найти лишь один корень функции, к тому же, мы не знаем какой именно. </p>
+
+<p>Чтобы найти другие корни, можно было бы брать новые стартовые точки и применять метод вновь, но нет гарантии, что при этом итерации сойдутся к <em>новому</em> корню, а не к уже найденному, если вообще сойдутся. </p>
+
+<p>Для поиска других корней используется метод удаления корней. </p>
+
+<p>Пусть <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image066.png" /> &mdash; корень функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image022_0003.png" />, рассмотрим функцию<img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image067.png" />. Точка <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image066_0000.png" /> будет являться корнем функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image068.png" /> на единицу меньшей кратности, чем<img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image069.png" />, при этом все остальные корни у функций <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image070.png" /> и <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image068_0000.png" /> совпадают с учетом кратности. </p>
+
+<p>Применяя тот или иной метод нахождения корней к функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image068_0001.png" />, мы найдем новый корень <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image071.png" /> (который может в случае кратных корней и совпадать с <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image066_0001.png" />). Далее можно рассмотреть функцию <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image072.png" /> и искать корни у неё. </p>
+
+<p>Повторяя указанную процедуру, можно найти все корни <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image070_0000.png" /> с учетом кратности. </p>
+
+<p>Заметим, что когда мы производим деление на тот или иной корень <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image061_0000.png" />, то в действительности мы делим лишь на найденное приближение <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image073.png" />, и, тем самым, несколько сдвигаем корни вспомогательной функции относительно истинных корней функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image022_0004.png" />. Это может привести к значительным погрешностям, если процедура отделения применялась уже достаточное число раз. </p>
+
+<p>Чтобы избежать этого, с помощью вспомогательных функций вычисляются лишь первые итерации, а окончательные проводятся по исходной функции <img class="formula" src="http://statistica.ru/upload/medialibrary/chisl-methods-resh-ur/image022_0005.png" />, используя в качестве стартового приближения, последнюю итерацию, полученную по вспомогательной функции.</p>
+
+<p>Мы рассмотрели решение уравнений только в одномерном случае, нахождение решений многомерных уравнений существенно более трудная задача.</p>
+
+<p>
+</p>
+
+<p><a class="btn btn-default" href="@Url.Action("Test","Home")">Перейти к тестированию &raquo;</a></p>

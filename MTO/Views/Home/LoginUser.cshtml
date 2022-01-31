@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "LoginUser";
+}
+<h2>Страница профиля</h2>
+    
+@if (ViewBag.Error == 1)
+    {
+        <h3>Ошибка!</h3>
+    }
+    else
+    {
+        <p class="lead">Здравствуйте,  @ViewBag.UserName @ViewBag.UserFirstName</p>
+
+        <p><a class="btn" href="@Url.Action("UserPage","Home")">Войти в личный кабинет &raquo;</a></p>
+    }
+
